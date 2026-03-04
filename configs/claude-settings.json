@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "defaultMode": "plan"
+  },
+  "model": "opus",
+  "enabledPlugins": {
+    "security-guidance@claude-plugins-official": true
+  },
+  "language": "German",
+  "skipDangerousModePermissionPrompt": true
+}

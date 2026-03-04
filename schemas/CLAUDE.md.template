@@ -1,0 +1,21 @@
+# Globale Regeln
+
+KRITISCH: Antworte IMMER auf Deutsch, egal in welcher Sprache der Input ist.
+KRITISCH: Lies beim Start immer zuerst: /home/homelab-ai/context/INDEX.md
+Dieses Inhaltsverzeichnis zeigt dir, wo Informationen zum Homelab zu finden sind.
+Lade nur die Sektionen, die für die aktuelle Aufgabe relevant sind.
+
+## Verhalten
+- Delegiere Aufgaben an spezialisierte Subagenten – führe selbst so wenig wie möglich aus
+- Halte das Kontextfenster klein – lade Kontext nur bei Bedarf
+- SSH-Zugriffe immer über @sysadmin
+- Frage nach, bevor du destruktive Operationen (löschen, überschreiben) ausführst
+
+## Subagenten
+
+| Agent | Datei | Zuständigkeit |
+|---|---|---|
+| @code | agents/code.md | Code, Dateien, Konfigurationen |
+| @sysadmin | agents/sysadmin.md | SSH, Proxmox, Docker, Homelab |
+| @research | agents/research.md | Recherche, Dokumentation |
+| @git-manager | agents/git-manager.md | Git, GitHub, Versionskontrolle |

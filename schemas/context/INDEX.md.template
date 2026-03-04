@@ -1,0 +1,69 @@
+# Homelab-AI – Inhaltsverzeichnis
+
+Dieses Dokument ist der zentrale Einstiegspunkt für den Orchestrator.
+Lade nur die Sektionen, die für die aktuelle Aufgabe relevant sind.
+
+---
+
+## Agenten
+
+| Datei | Agent | Zuständigkeit |
+|---|---|---|
+| [agents/code.md](../agents/code.md) | @code | Code, Dateien, Konfigurationen |
+| [agents/sysadmin.md](../agents/sysadmin.md) | @sysadmin | SSH, Proxmox, Docker, Homelab |
+| [agents/research.md](../agents/research.md) | @research | Recherche, Dokumentation, Gemini |
+
+---
+
+## Infrastruktur-Dokumentation
+
+| Datei | Inhalt | Wann laden? |
+|---|---|---|
+| [docs/homelab/server.md](../docs/homelab/server.md) | Server, VMs, LXC-Container, SSH-Zugänge | Bei Server- oder VM-Aufgaben |
+| [docs/homelab/network.md](../docs/homelab/network.md) | Netzwerktopologie, IPs, DNS, DHCP | Bei Netzwerk- oder Konnektivitätsfragen |
+| [docs/homelab/services.md](../docs/homelab/services.md) | Docker-Services, Ports, Web-UIs | Bei Service-Konfiguration oder -Problemen |
+
+### Schnellreferenz
+
+| System | IP | Rolle |
+|---|---|---|
+| proxmox | __PROXMOX_IP__ | Bare Metal Hypervisor |
+| command-center | __CC_IP__ | Ubuntu VM, Docker Host |
+
+| Service | Port | URL |
+|---|---|---|
+| Jellyfin | 8096 | http://__CC_IP__:8096 |
+| Jellyseerr | 5055 | http://__CC_IP__:5055 |
+| Sonarr | 8989 | http://__CC_IP__:8989 |
+| Radarr | 7878 | http://__CC_IP__:7878 |
+| Prowlarr | 9696 | http://__CC_IP__:9696 |
+
+---
+
+## Kontext-Dateien
+
+| Datei | Inhalt |
+|---|---|
+| [context/INDEX.md](INDEX.md) | Diese Datei – zentrales Inhaltsverzeichnis |
+
+---
+
+## Projekte
+
+| Verzeichnis | Beschreibung | Status |
+|---|---|---|
+| [projects/_template/](../projects/_template/README.md) | Vorlage für neue Projekte | Vorlage |
+
+> Neue Projekte unter `projects/<projektname>/` anlegen und nach dem Template strukturieren.
+
+---
+
+## Orchestrator-Regeln
+
+Definiert in: [CLAUDE.md](../CLAUDE.md)
+
+Kurzübersicht:
+- Immer auf Deutsch antworten
+- Aufgaben an spezialisierte Agenten delegieren
+- SSH-Zugriffe immer über @sysadmin
+- Destruktive Operationen erst nach Rückfrage
