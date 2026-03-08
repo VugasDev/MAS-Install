@@ -21,4 +21,20 @@ alias gs='git status'
 alias gl='git log --oneline -10'
 alias gp='git push'
 
+# MCP-Server sicherstellen vor CLI-Nutzung
+# (Nur aktiv wenn MCP_SERVER_ENABLED=true gesetzt)
+_mas_ensure_mcp() {
+    [[ "${MCP_SERVER_ENABLED:-false}" != "true" ]] && return 0
+    if ! docker ps --format '{{.Names}}' 2>/dev/null | grep -q '^mcp-proxmox$'; then
+        echo "[MAS] MCP-Server wird gestartet..."
+        if docker ps -a --format '{{.Names}}' 2>/dev/null | grep -q '^mcp-proxmox$'; then
+            docker start mcp-proxmox
+        else
+            local mcp_dir="${MCP_SERVER_DIR:-$HOME/mcp-proxmox}"
+            (cd "$mcp_dir" && docker compose -f docker/docker-compose.yml up -d 2>/dev/null)
+        fi
+        sleep 1
+    fi
+}
+
 # <<< MAS-Install <<<
