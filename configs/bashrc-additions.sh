@@ -1,5 +1,5 @@
 # >>> MAS-Install >>>
-# Automatisch hinzugefügt von MAS-Install — nicht manuell bearbeiten.
+# Automatisch hinzugefuegt von MAS-Install — nicht manuell bearbeiten.
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -14,12 +14,8 @@ export PATH="$HOME/.local/bin:$PATH"
 # export GEMINI_API_KEY="..."
 # export OPENAI_API_KEY="sk-..."
 
-# Aliases
-alias ll='ls -alF'
-alias cls='clear'
-alias gs='git status'
-alias gl='git log --oneline -10'
-alias gp='git push'
+# Aliases (verwaltet im homelab-ai Repo)
+[ -f ~/homelab-ai/shell/aliases.sh ] && source ~/homelab-ai/shell/aliases.sh
 
 # MCP-Server sicherstellen vor CLI-Nutzung
 # (Nur aktiv wenn MCP_SERVER_ENABLED=true gesetzt)

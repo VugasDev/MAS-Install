@@ -1,21 +1,70 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 # Globale Regeln
 
 KRITISCH: Antworte IMMER auf Deutsch, egal in welcher Sprache der Input ist.
-KRITISCH: Lies beim Start immer zuerst: /home/homelab-ai/context/INDEX.md
+KRITISCH: Lies beim Start immer zuerst: ~/homelab-ai/context/INDEX.md
 Dieses Inhaltsverzeichnis zeigt dir, wo Informationen zum Homelab zu finden sind.
-Lade nur die Sektionen, die für die aktuelle Aufgabe relevant sind.
+Lade nur die Sektionen, die fuer die aktuelle Aufgabe relevant sind.
 
 ## Verhalten
-- Delegiere Aufgaben an spezialisierte Subagenten – führe selbst so wenig wie möglich aus
+- Delegiere Aufgaben an spezialisierte Subagenten – fuehre selbst so wenig wie moeglich aus
 - Halte das Kontextfenster klein – lade Kontext nur bei Bedarf
-- SSH-Zugriffe immer über @sysadmin
-- Frage nach, bevor du destruktive Operationen (löschen, überschreiben) ausführst
+- SSH-Zugriffe immer ueber @sysadmin
+- Frage nach, bevor du destruktive Operationen (loeschen, ueberschreiben) ausfuehrst
 
 ## Subagenten
 
-| Agent | Datei | Zuständigkeit |
+| Agent | Datei | Zustaendigkeit |
 |---|---|---|
 | @code | agents/code.md | Code, Dateien, Konfigurationen |
 | @sysadmin | agents/sysadmin.md | SSH, Proxmox, Docker, Homelab |
 | @research | agents/research.md | Recherche, Dokumentation |
 | @git-manager | agents/git-manager.md | Git, GitHub, Versionskontrolle |
+| @project-planner | agents/project-planner.md | Projektplanung, Aufgabenzerlegung |
+| @task-dispatcher | agents/task-dispatcher.md | Aufgabenzuweisung, Parallelisierung |
+| homelab-guru | .claude/agents/homelab-guru.md | Infrastrukturplanung, Netzwerkdesign, Security (Zero-Trust) |
+| @mcp-builder | agents/mcp-builder.md | MCP-Server entwickeln (FastMCP, Docker, Claude Desktop Integration) |
+
+## Repository-Struktur
+
+```
+agents/          # Subagenten-Definitionen (Rollen, Werkzeuge, Aktivierungsmuster)
+context/         # INDEX.md – zentrales Inhaltsverzeichnis, immer zuerst lesen
+docs/homelab/    # Infrastruktur-Dokumentation (server.md, network.md, services.md, users.md)
+projects/        # Lokale Projekte (gitignored), Template unter projects/_template/README.md
+shell/           # Shell-Konfiguration (aliases.sh), wird per source in .bashrc eingebunden
+.claude/agents/  # Claude-native Agenten (homelab-guru)
+```
+
+## Git-Commit-Konventionen (@git-manager)
+
+Format: `<Typ>: <Kurzbeschreibung>` (max. 72 Zeichen), Beschreibung auf Deutsch.
+
+| Typ | Verwendung |
+|---|---|
+| `feat:` | Neue Funktionalitaet oder Inhalte |
+| `fix:` | Fehlerbehebung |
+| `docs:` | Dokumentationsaenderungen |
+| `refactor:` | Umstrukturierung ohne Funktionsaenderung |
+| `config:` | Konfigurationsaenderungen |
+| `sync:` | Synchronisation (z.B. Obsidian Vault) |
+
+Vor jedem Commit `git diff --cached` lesen und verstehen. Kein `--force` Push ohne explizite Bestaetigung.
+
+## Verwaltete Git-Projekte
+
+| Projekt | Pfad | GitHub |
+|---|---|---|
+| homelab-ai | `~/homelab-ai/` | __GIT_USER__/homelab-ai |
+| second-brain | `~/second-brain/` | __GIT_USER__/second-brain |
+| MAS-Install | `~/MAS-Install/` | __GIT_USER__/MAS-Install |
+
+## Neue Projekte anlegen
+
+1. Ordner unter `~/homelab-ai/projects/<projektname>/` erstellen
+2. Git-Repo initialisieren und nach Template (`projects/_template/README.md`) strukturieren
+3. Privates GitHub-Repo unter `__GIT_USER__/<projektname>` erstellen
+4. In `context/INDEX.md` unter "Projekte" eintragen (mit Pfad und GitHub-Link)

@@ -1,6 +1,6 @@
 # MAS-Install — Multi-Agent System Installer
 
-Reproduzierbares Installationspaket für das **homelab-ai** Multi-Agent System.
+Reproduzierbares Installationspaket fuer das **homelab-ai** Multi-Agent System.
 Auf einem blanken Ubuntu-System: `git clone` + `./install.sh` — fertig.
 
 ## Quick Start
@@ -14,8 +14,8 @@ cd MAS-Install
 ## Voraussetzungen
 
 - **Ubuntu 22.04+** oder Debian-basiertes System (WSL2 funktioniert)
-- **Benutzer mit sudo-Rechten** (nicht als root ausführen)
-- **Internetverbindung** für Downloads
+- **Benutzer mit sudo-Rechten** (nicht als root ausfuehren)
+- **Internetverbindung** fuer Downloads
 
 ## Was wird installiert?
 
@@ -23,14 +23,14 @@ cd MAS-Install
 |---|---|
 | `01-system-base` | Build-Tools, curl, git, jq, etc. + sudo NOPASSWD |
 | `02-nvm-node` | NVM + Node.js LTS (>= 20) |
-| `03-claude-code` | Claude Code CLI + Settings-Template |
+| `03-claude-code` | Claude Code CLI (nativer Installer) + Settings-Template |
 | `04-github-cli` | GitHub CLI (gh) via offiziellem apt-Repo |
 | `05-gemini-cli` | Google Gemini CLI (npm, braucht Node >= 20) |
 | `06-python-tools` | Python3, pip, pipx, aider-chat |
 | `07-git-config` | Git Name/E-Mail (interaktiv), default branch, credential helper |
-| `08-bashrc-setup` | NVM, PATH, Aliases, API-Key-Platzhalter in ~/.bashrc |
+| `08-bashrc-setup` | NVM, PATH, shell/aliases.sh Source, API-Key-Platzhalter in ~/.bashrc |
 
-Alle Module sind **idempotent** — sie erkennen bereits installierte Tools und überspringen sie.
+Alle Module sind **idempotent** — sie erkennen bereits installierte Tools und ueberspringen sie.
 
 ## Optionen
 
@@ -38,13 +38,13 @@ Alle Module sind **idempotent** — sie erkennen bereits installierte Tools und 
 ./install.sh                          # Alles installieren
 ./install.sh --skip 05-gemini-cli     # Ohne Gemini CLI
 ./install.sh --only 02-nvm-node       # Nur NVM + Node
-./install.sh --dry-run                # Zeigt was installiert würde
-./install.sh --list                   # Verfügbare Module auflisten
+./install.sh --dry-run                # Zeigt was installiert wuerde
+./install.sh --list                   # Verfuegbare Module auflisten
 ```
 
-### Einzelne Module ausführen
+### Einzelne Module ausfuehren
 
-Jedes Skript kann auch direkt ausgeführt werden:
+Jedes Skript kann auch direkt ausgefuehrt werden:
 
 ```bash
 ./scripts/05-gemini-cli.sh
@@ -52,23 +52,26 @@ Jedes Skript kann auch direkt ausgeführt werden:
 
 ## Post-Install Schritte
 
-Nach der Installation müssen die Tools manuell authentifiziert werden:
+Nach der Installation muessen die Tools manuell authentifiziert werden:
 
 1. **Shell neu laden:** `source ~/.bashrc`
 2. **GitHub:** `gh auth login` — Browser-Flow empfohlen
-3. **Claude Code:** `claude` starten — authentifiziert über Anthropic-Account
+3. **Claude Code:** `claude` starten — authentifiziert ueber Anthropic-Account
 4. **Gemini CLI:** `gemini` starten — OAuth-Flow oder API-Key
 5. **API-Keys:** In `~/.bashrc` die auskommentierten `export`-Zeilen aktivieren
 6. **SSH-Key:** `ssh-keygen -t ed25519` (falls noch keiner existiert)
+7. **homelab-ai Repo:** `git clone` oder Schema-Dateien nach `~/homelab-ai/` kopieren
 
 ## Schema-Dateien
 
-Unter `schemas/` liegen die Agent-Definitionen und Templates für das homelab-ai System:
+Unter `schemas/` liegen die Agent-Definitionen und Templates fuer das homelab-ai System:
 
 ```
 schemas/
 ├── homelab-ai-structure.md     # Dokumentation der Zielstruktur
 ├── CLAUDE.md.template          # Orchestrator-Regeln
+├── gitignore                   # .gitignore Template
+├── gitattributes               # .gitattributes Template (LF enforcement)
 ├── context/
 │   └── INDEX.md.template       # Inhaltsverzeichnis
 ├── agents/
@@ -78,10 +81,16 @@ schemas/
 │   └── git-manager.md.template # @git-manager (Projekte als Platzhalter)
 ├── claude-agents/
 │   └── homelab-guru.md         # Claude Agent (verbatim)
+├── shell/
+│   └── aliases.sh              # Shell-Aliases Template
 └── projects/
     └── _template/
         └── README.md           # Projekt-Template (verbatim)
 ```
+
+### Shell-Integration
+
+Die `.bashrc` wird per MAS-Install um einen Block erweitert, der u.a. `~/homelab-ai/shell/aliases.sh` per `source` einbindet. Aliases werden dadurch im homelab-ai Repo versioniert und bei jedem Shell-Start geladen.
 
 ### Platzhalter
 
@@ -109,7 +118,7 @@ node --version  # Sollte >= 20 sein
 
 ### NVM nicht gefunden nach Installation
 
-NVM wird erst nach einem Shell-Neustart verfügbar:
+NVM wird erst nach einem Shell-Neustart verfuegbar:
 
 ```bash
 source ~/.bashrc
@@ -149,7 +158,7 @@ MAS-Install/
 ├── scripts/
 │   ├── 01-system-base.sh
 │   ├── 02-nvm-node.sh
-│   ├── 03-claude-code.sh
+│   ├── 03-claude-code.sh   # Nutzt nativen Installer (nicht npm)
 │   ├── 04-github-cli.sh
 │   ├── 05-gemini-cli.sh
 │   ├── 06-python-tools.sh
@@ -157,11 +166,11 @@ MAS-Install/
 │   └── 08-bashrc-setup.sh
 ├── configs/
 │   ├── claude-settings.json
-│   └── bashrc-additions.sh
+│   └── bashrc-additions.sh # Inkl. source auf ~/homelab-ai/shell/aliases.sh
 └── schemas/
     └── ...                 # Agent-Definitionen und Templates
 ```
 
 ## Lizenz
 
-Privates Repository — nur für persönlichen Gebrauch.
+Privates Repository — nur fuer persoenlichen Gebrauch.

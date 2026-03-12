@@ -7,14 +7,11 @@ ensure_not_root
 
 step "Claude Code CLI installieren"
 
-# NVM laden (braucht Node)
-load_nvm || exit 1
-
 if is_installed claude; then
     success "Claude Code bereits installiert: $(claude --version 2>/dev/null || echo 'Version unbekannt')"
 else
-    info "Installiere @anthropic-ai/claude-code via npm ..."
-    npm install -g @anthropic-ai/claude-code
+    info "Installiere Claude Code via offiziellem Installer ..."
+    curl -fsSL https://claude.ai/install.sh | sh
     success "Claude Code installiert."
 fi
 
@@ -33,6 +30,6 @@ else
 fi
 
 echo ""
-warn "Nächster Schritt: 'claude' starten und mit Anthropic-Account authentifizieren."
+warn "Naechster Schritt: 'claude' starten und mit Anthropic-Account authentifizieren."
 
 success "03-claude-code abgeschlossen."

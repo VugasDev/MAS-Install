@@ -1,0 +1,3 @@
+# Projekte werden separat verwaltet (eigene Git-Repos)
+projects/*
+!projects/_template/

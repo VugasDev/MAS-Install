@@ -1,17 +1,20 @@
 # Homelab-AI – Inhaltsverzeichnis
 
-Dieses Dokument ist der zentrale Einstiegspunkt für den Orchestrator.
-Lade nur die Sektionen, die für die aktuelle Aufgabe relevant sind.
+Dieses Dokument ist der zentrale Einstiegspunkt fuer den Orchestrator.
+Lade nur die Sektionen, die fuer die aktuelle Aufgabe relevant sind.
 
 ---
 
 ## Agenten
 
-| Datei | Agent | Zuständigkeit |
+| Datei | Agent | Zustaendigkeit |
 |---|---|---|
 | [agents/code.md](../agents/code.md) | @code | Code, Dateien, Konfigurationen |
 | [agents/sysadmin.md](../agents/sysadmin.md) | @sysadmin | SSH, Proxmox, Docker, Homelab |
 | [agents/research.md](../agents/research.md) | @research | Recherche, Dokumentation, Gemini |
+| [agents/git-manager.md](../agents/git-manager.md) | @git-manager | Git, GitHub, Versionskontrolle |
+| [agents/project-planner.md](../agents/project-planner.md) | @project-planner | Projektplanung, Aufgabenzerlegung |
+| [agents/task-dispatcher.md](../agents/task-dispatcher.md) | @task-dispatcher | Aufgabenzuweisung, Parallelisierung |
 
 ---
 
@@ -19,9 +22,10 @@ Lade nur die Sektionen, die für die aktuelle Aufgabe relevant sind.
 
 | Datei | Inhalt | Wann laden? |
 |---|---|---|
-| [docs/homelab/server.md](../docs/homelab/server.md) | Server, VMs, LXC-Container, SSH-Zugänge | Bei Server- oder VM-Aufgaben |
-| [docs/homelab/network.md](../docs/homelab/network.md) | Netzwerktopologie, IPs, DNS, DHCP | Bei Netzwerk- oder Konnektivitätsfragen |
+| [docs/homelab/server.md](../docs/homelab/server.md) | Server, VMs, LXC-Container, SSH-Zugaenge | Bei Server- oder VM-Aufgaben |
+| [docs/homelab/network.md](../docs/homelab/network.md) | Netzwerktopologie, IPs, DNS, DHCP | Bei Netzwerk- oder Konnektivitaetsfragen |
 | [docs/homelab/services.md](../docs/homelab/services.md) | Docker-Services, Ports, Web-UIs | Bei Service-Konfiguration oder -Problemen |
+| [docs/homelab/users.md](../docs/homelab/users.md) | User, Berechtigungen, SSH-Zugang | Bei User- oder Zugriffsfragen |
 
 ### Schnellreferenz
 
@@ -52,9 +56,9 @@ Lade nur die Sektionen, die für die aktuelle Aufgabe relevant sind.
 
 | Verzeichnis | Beschreibung | Status |
 |---|---|---|
-| [projects/_template/](../projects/_template/README.md) | Vorlage für neue Projekte | Vorlage |
+| [projects/_template/](../projects/_template/README.md) | Vorlage fuer neue Projekte | Vorlage |
 
-> Neue Projekte unter `projects/<projektname>/` anlegen und nach dem Template strukturieren.
+> Neue Projekte unter `~/homelab-ai/projects/<projektname>/` anlegen und nach dem Template strukturieren.
 
 ---
 
@@ -62,8 +66,8 @@ Lade nur die Sektionen, die für die aktuelle Aufgabe relevant sind.
 
 Definiert in: [CLAUDE.md](../CLAUDE.md)
 
-Kurzübersicht:
+Kurzuebersicht:
 - Immer auf Deutsch antworten
 - Aufgaben an spezialisierte Agenten delegieren
-- SSH-Zugriffe immer über @sysadmin
-- Destruktive Operationen erst nach Rückfrage
+- SSH-Zugriffe immer ueber @sysadmin
+- Destruktive Operationen erst nach Rueckfrage
